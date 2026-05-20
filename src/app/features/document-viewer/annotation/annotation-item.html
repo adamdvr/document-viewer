@@ -1,0 +1,37 @@
+<button
+  type="button"
+  class="annotation__handle"
+  title="Перетащить"
+  aria-label="Перетащить аннотацию"
+  (pointerdown)="onHandlePointerDown($event)"
+  (pointermove)="onHandlePointerMove($event)"
+  (pointerup)="onHandlePointerUp($event)"
+  (pointercancel)="onHandlePointerUp($event)"
+>
+  <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+    <circle cx="3" cy="3" r="1.2" />
+    <circle cx="9" cy="3" r="1.2" />
+    <circle cx="3" cy="6" r="1.2" />
+    <circle cx="9" cy="6" r="1.2" />
+    <circle cx="3" cy="9" r="1.2" />
+    <circle cx="9" cy="9" r="1.2" />
+  </svg>
+</button>
+
+<textarea
+  class="annotation__text"
+  [value]="annotation().text"
+  placeholder="Введите текст…"
+  rows="2"
+  (input)="onTextInput($event)"
+></textarea>
+
+<button
+  type="button"
+  class="annotation__delete"
+  title="Удалить"
+  aria-label="Удалить аннотацию"
+  (click)="onDelete()"
+>
+  ×
+</button>

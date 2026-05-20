@@ -1,0 +1,49 @@
+<header class="toolbar">
+  <div class="title">
+    <span class="title__label">Документ</span>
+    <span class="title__name">{{ documentName() ?? '—' }}</span>
+  </div>
+
+  <div class="zoom" role="group" aria-label="Масштаб">
+    <button
+      type="button"
+      class="icon-btn"
+      aria-label="Уменьшить"
+      [disabled]="!canZoomOut()"
+      (click)="zoomOut.emit()"
+    >
+      &minus;
+    </button>
+    <button
+      type="button"
+      class="zoom__value"
+      title="Сбросить масштаб"
+      (click)="zoomReset.emit()"
+    >
+      {{ zoomPercent() }}%
+    </button>
+    <button
+      type="button"
+      class="icon-btn"
+      aria-label="Увеличить"
+      [disabled]="!canZoomIn()"
+      (click)="zoomIn.emit()"
+    >
+      &plus;
+    </button>
+  </div>
+
+  <div class="actions">
+    <button
+      type="button"
+      class="btn btn--ghost"
+      [class.btn--active]="placingAnnotation()"
+      (click)="togglePlacing.emit()"
+    >
+      {{ placingAnnotation() ? 'Отмена' : 'Добавить аннотацию' }}
+    </button>
+    <button type="button" class="btn btn--primary" (click)="save.emit()">
+      Сохранить
+    </button>
+  </div>
+</header>

@@ -1,0 +1,50 @@
+<app-viewer-toolbar
+  [documentName]="documentResource.value()?.name ?? null"
+  [zoomPercent]="zoomPercent()"
+  [canZoomIn]="canZoomIn()"
+  [canZoomOut]="canZoomOut()"
+  [placingAnnotation]="placingAnnotation()"
+  (zoomIn)="zoomIn()"
+  (zoomOut)="zoomOut()"
+  (zoomReset)="resetZoom()"
+  (togglePlacing)="togglePlacing()"
+  (save)="save()"
+/>
+
+<main
+  class="viewport"
+  [class.placing]="placingAnnotation()"
+  [attr.aria-busy]="documentResource.isLoading()"
+>
+  @switch (documentResource.status()) {
+    @case ('loading') {
+      <p class="state state--loading">Загрузка документа…</p>
+    }
+    @case ('error') {
+      <div class="state state--error">
+        <p>Не удалось загрузить документ.</p>
+        <button type="button" (click)="reload()">Повторить</button>
+      </div>
+    }
+    @default {
+      @let document = documentResource.value();
+      @if (document) {
+        <div class="pages">
+          @for (page of document.pages; track page.number) {
+            <app-document-page
+              [pageNumber]="page.number"
+              [imageUrl]="page.imageUrl"
+              [zoom]="zoom()"
+              [annotations]="annotations()"
+              [placingAnnotation]="placingAnnotation()"
+              (annotationAdded)="onAnnotationAdded($event)"
+              (annotationMoved)="onAnnotationMoved($event)"
+              (annotationTextChanged)="onAnnotationTextChanged($event)"
+              (annotationDeleted)="onAnnotationDeleted($event)"
+            />
+          }
+        </div>
+      }
+    }
+  }
+</main>

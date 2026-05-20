@@ -1,0 +1,46 @@
+<div class="wrapper">
+  <div
+    class="frame"
+    [style.width.px]="baseWidth * zoom()"
+    [style.height.px]="baseHeight() * zoom()"
+  >
+    <div
+      #page
+      class="page"
+      [style.width.px]="baseWidth"
+      [style.height.px]="baseHeight()"
+      [style.transform]="'scale(' + zoom() + ')'"
+    >
+      <img
+        class="page__image"
+        [src]="imageUrl()"
+        [alt]="'Страница ' + pageNumber()"
+        draggable="false"
+        (load)="onImageLoaded($event)"
+      />
+
+      <div class="annotations">
+        @for (annotation of pageAnnotations(); track annotation.id) {
+          <app-annotation-item
+            [annotation]="annotation"
+            [zoom]="zoom()"
+            (moved)="annotationMoved.emit($event)"
+            (textChanged)="annotationTextChanged.emit($event)"
+            (deleted)="annotationDeleted.emit($event)"
+          />
+        }
+      </div>
+
+      @if (placingAnnotation()) {
+        <button
+          type="button"
+          class="placing-overlay"
+          aria-label="Поставить аннотацию"
+          (click)="onPlaceClick($event)"
+        ></button>
+      }
+    </div>
+  </div>
+
+  <span class="page-label">Страница {{ pageNumber() }}</span>
+</div>

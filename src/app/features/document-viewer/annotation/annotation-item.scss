@@ -1,0 +1,85 @@
+:host {
+  position: absolute;
+  display: inline-flex;
+  align-items: stretch;
+  min-width: 160px;
+  max-width: 280px;
+  background: var(--color-annotation-bg);
+  border: 1px solid var(--color-annotation-border);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  font-size: 13px;
+  color: var(--color-text);
+  overflow: hidden;
+  will-change: left, top;
+}
+
+:host(.annotation--dragging) {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+  cursor: grabbing;
+}
+
+.annotation__handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  border: none;
+  border-right: 1px solid var(--color-annotation-border);
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.55);
+  cursor: grab;
+  padding: 0;
+  touch-action: none;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  svg {
+    fill: currentColor;
+  }
+}
+
+:host(.annotation--dragging) .annotation__handle {
+  cursor: grabbing;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.annotation__text {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  resize: none;
+  padding: 6px 8px;
+  font: inherit;
+  color: inherit;
+  outline: none;
+  line-height: 1.35;
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.annotation__delete {
+  width: 22px;
+  border: none;
+  border-left: 1px solid var(--color-annotation-border);
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    background: rgba(226, 85, 85, 0.15);
+    color: var(--color-danger);
+  }
+}
