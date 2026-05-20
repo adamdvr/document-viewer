@@ -111,7 +111,7 @@ export class DocumentViewer {
       pages: document.pages,
       annotations: this.annotations(),
     };
-    console.log('Saved document with annotations:', payload);
+    console.log(payload);
   }
 
   protected reload(): void {
