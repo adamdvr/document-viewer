@@ -1,0 +1,24 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) ease;
+}
+
+:host(:hover:not(:disabled)) {
+  background: var(--color-overlay-active);
+}
+
+:host(:disabled) {
+  opacity: 0.35;
+  cursor: not-allowed;
+}

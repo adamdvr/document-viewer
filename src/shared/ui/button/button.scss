@@ -1,0 +1,49 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+:host(:disabled) {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+:host([data-variant='primary']) {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+:host([data-variant='primary']:hover:not(:disabled)) {
+  border-color: var(--color-accent-strong);
+  background: var(--color-accent-strong);
+}
+
+:host([data-variant='outline']) {
+  border-color: var(--color-outline-on-dark);
+  background: transparent;
+  color: inherit;
+}
+
+:host([data-variant='outline']:hover:not(:disabled)) {
+  background: var(--color-overlay-hover);
+}
+
+:host([data-variant='tonal']) {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-on-accent-soft);
+}
