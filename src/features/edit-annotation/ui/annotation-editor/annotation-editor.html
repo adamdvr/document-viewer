@@ -1,0 +1,34 @@
+<button
+  type="button"
+  class="handle"
+  appPointerDrag
+  title="Перетащите или сдвиньте стрелками"
+  aria-label="Переместить аннотацию стрелками"
+  (dragStart)="startDrag($event)"
+  (dragMove)="drag($event)"
+  (dragEnd)="finishDrag()"
+  (dragCancel)="cancelDrag()"
+  (keydown)="nudge($event)"
+>
+  <app-icon name="grip" />
+</button>
+
+<textarea
+  #textField
+  class="text"
+  rows="2"
+  placeholder="Введите текст…"
+  aria-label="Текст аннотации"
+  [value]="annotation().text"
+  (input)="updateText(textField.value)"
+></textarea>
+
+<button
+  type="button"
+  class="remove"
+  title="Удалить"
+  aria-label="Удалить аннотацию"
+  (click)="remove()"
+>
+  <app-icon name="close" />
+</button>

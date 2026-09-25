@@ -1,0 +1,10 @@
+@let active = placement.active();
+<button
+  type="button"
+  appButton
+  [variant]="active ? 'tonal' : 'outline'"
+  [attr.title]="active ? 'Esc — отменить размещение' : null"
+  (click)="placement.toggle()"
+>
+  {{ active ? 'Отмена' : 'Добавить аннотацию' }}
+</button>

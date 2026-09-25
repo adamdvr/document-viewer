@@ -1,0 +1,27 @@
+<button
+  type="button"
+  appIconButton
+  icon="minus"
+  label="Уменьшить масштаб"
+  [disabled]="!zoom.canZoomOut()"
+  (click)="zoom.zoomOut()"
+></button>
+
+<button
+  type="button"
+  class="reset"
+  title="Сбросить масштаб"
+  attr.aria-label="Сбросить масштаб, сейчас {{ zoom.percent() }} %"
+  (click)="zoom.reset()"
+>
+  {{ zoom.percent() }}%
+</button>
+
+<button
+  type="button"
+  appIconButton
+  icon="plus"
+  label="Увеличить масштаб"
+  [disabled]="!zoom.canZoomIn()"
+  (click)="zoom.zoomIn()"
+></button>

@@ -1,0 +1,80 @@
+:host {
+  position: absolute;
+  display: inline-flex;
+  align-items: stretch;
+  min-width: 160px;
+  max-width: 280px;
+  overflow: hidden;
+  border: 1px solid var(--color-annotation-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-annotation-bg);
+  box-shadow: var(--shadow-annotation);
+  color: var(--color-on-light);
+  font-size: 13px;
+}
+
+// Индикатор фокуса на всю аннотацию: у поля ввода собственная рамка убрана ради вида стикера.
+:host(:focus-within) {
+  outline: var(--focus-outline);
+  outline-offset: 1px;
+}
+
+:host(.dragging) {
+  box-shadow: var(--shadow-annotation-raised);
+  cursor: grabbing;
+}
+
+.handle,
+.remove {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  padding: 0;
+  border: none;
+  background: var(--color-annotation-control);
+  color: var(--color-annotation-icon);
+  font-size: 12px;
+}
+
+.handle {
+  border-right: 1px solid var(--color-annotation-border);
+  cursor: grab;
+
+  &:hover {
+    background: var(--color-annotation-control-hover);
+  }
+}
+
+:host(.dragging) .handle {
+  background: var(--color-annotation-control-hover);
+  cursor: grabbing;
+}
+
+.remove {
+  border-left: 1px solid var(--color-annotation-border);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-danger-soft);
+    color: var(--color-danger);
+  }
+}
+
+.text {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 6px 8px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1.35;
+  resize: none;
+
+  &::placeholder {
+    color: var(--color-annotation-placeholder);
+  }
+}
