@@ -23,6 +23,11 @@ export class AnnotationPlacementStore {
   }
 
   place(pageNumber: number, position: Point): void {
+    // Инвариант модели, а не UI: слой размещения может успеть получить событие
+    // до того, как change detection уберёт его из DOM.
+    if (!this.isActive()) {
+      return;
+    }
     this.annotations.add(pageNumber, position);
     this.isActive.set(false);
   }
