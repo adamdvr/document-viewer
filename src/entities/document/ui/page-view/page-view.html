@@ -1,0 +1,24 @@
+<figure class="page">
+  <div class="frame" [style.width.px]="scaledSize().width" [style.height.px]="scaledSize().height">
+    <div
+      #surface
+      class="surface"
+      [style.width.px]="size().width"
+      [style.height.px]="size().height"
+      [style.scale]="scale()"
+    >
+      <img
+        #image
+        class="image"
+        [ngSrc]="page().imageUrl"
+        fill
+        [priority]="priority()"
+        alt=""
+        draggable="false"
+        (load)="updateAspectRatio(image)"
+      />
+      <ng-content />
+    </div>
+  </div>
+  <figcaption class="caption">Страница {{ pageNumber() }}</figcaption>
+</figure>
