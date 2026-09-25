@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+// Просмотрщик занимает всё место. min-height: 0 — прокручиваться должен его viewport, а не окно.
+app-document-viewer {
+  flex: 1;
+  min-height: 0;
+}

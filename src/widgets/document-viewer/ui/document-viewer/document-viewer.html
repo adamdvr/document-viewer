@@ -1,0 +1,24 @@
+<header appToolbar>
+  <div toolbarStart class="title">
+    <span class="title__caption">Документ</span>
+    <span class="title__name">{{ documentInfo().name }}</span>
+  </div>
+
+  <app-zoom-controls toolbarCenter />
+
+  <app-add-annotation-button toolbarEnd />
+  <app-save-document-button toolbarEnd [documentInfo]="documentInfo()" />
+</header>
+
+<main class="viewport">
+  @for (page of documentInfo().pages; track page.number; let first = $first) {
+    <app-page-view [page]="page" [scale]="zoom.scale()" [priority]="first">
+      @for (annotation of annotations.byPage().get(page.number) ?? []; track annotation.id) {
+        <app-annotation-editor [annotation]="annotation" />
+      }
+      @if (placement.active()) {
+        <app-annotation-placement-layer />
+      }
+    </app-page-view>
+  }
+</main>
