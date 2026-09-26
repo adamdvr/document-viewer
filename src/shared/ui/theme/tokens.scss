@@ -1,0 +1,59 @@
+// Дизайн-токены — единственный источник цветов, радиусов, теней и таймингов.
+// Компоненты используют только семантические имена, без «сырых» значений.
+:root {
+  color-scheme: dark;
+
+  // Поверхности
+  --color-bg: #1a1c20;
+  --color-surface: #ffffff;
+  --color-toolbar: #25282e;
+
+  // Текст
+  --color-on-dark: #f1f3f7;
+  --color-on-dark-muted: #9aa1ac;
+  --color-on-light: #14161a;
+  --color-on-accent: #ffffff;
+
+  // Акцент и статусы
+  --color-accent: #5b8def;
+  --color-accent-strong: #2f6fe3;
+  --color-accent-soft: rgb(91 141 239 / 18%);
+  --color-on-accent-soft: #cfdcff;
+  --color-danger: #e25555;
+  --color-danger-soft: rgb(226 85 85 / 15%);
+
+  // Интерактивные состояния на тёмном фоне
+  --color-overlay-subtle: rgb(255 255 255 / 5%);
+  --color-overlay-hover: rgb(255 255 255 / 8%);
+  --color-overlay-active: rgb(255 255 255 / 12%);
+  --color-outline-on-dark: rgb(255 255 255 / 18%);
+
+  // Аннотация-стикер
+  --color-annotation-bg: #fff3a8;
+  --color-annotation-border: #e0c75a;
+  --color-annotation-control: rgb(0 0 0 / 5%);
+  --color-annotation-control-hover: rgb(0 0 0 / 10%);
+  --color-annotation-icon: rgb(0 0 0 / 55%);
+  --color-annotation-placeholder: rgb(0 0 0 / 40%);
+
+  // Форма, глубина, фокус
+  --radius-sm: 6px;
+  --radius-page: 4px;
+  --radius-pill: 999px;
+  --shadow-page: 0 4px 24px rgb(0 0 0 / 35%);
+  --shadow-toolbar: 0 1px 0 rgb(255 255 255 / 5%), 0 8px 24px rgb(0 0 0 / 25%);
+  --shadow-annotation: 0 2px 8px rgb(0 0 0 / 18%);
+  --shadow-annotation-raised: 0 6px 16px rgb(0 0 0 / 28%);
+  --focus-outline: 2px solid var(--color-accent);
+
+  // Размеры и движение
+  --toolbar-height: 56px;
+  --duration-fast: 150ms;
+}
+
+// Уважение системной настройки «уменьшить движение»: все переходы через токен выключаются разом.
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+  }
+}

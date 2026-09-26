@@ -1,0 +1,43 @@
+:host {
+  display: block;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+// Рамка занимает место страницы в раскладке с учётом масштаба...
+.frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-page);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-page);
+  transition:
+    width var(--duration-fast) ease,
+    height var(--duration-fast) ease;
+}
+
+// ...а поверхность всегда в базовом размере и масштабируется визуально,
+// поэтому координаты контента на ней не зависят от zoom.
+.surface {
+  position: relative;
+  transform-origin: top left;
+  transition: scale var(--duration-fast) ease;
+  user-select: none;
+}
+
+.image {
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.caption {
+  color: var(--color-on-dark-muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}

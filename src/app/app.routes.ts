@@ -1,20 +1,20 @@
 import { Routes } from '@angular/router';
 
+const DEFAULT_DOCUMENT_ID = '1';
+
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'documents/1',
+    redirectTo: `documents/${DEFAULT_DOCUMENT_ID}`,
   },
   {
     path: 'documents/:id',
-    loadComponent: () =>
-      import('./features/document-viewer/document-viewer').then(
-        (m) => m.DocumentViewer,
-      ),
+    title: 'Просмотр документа',
+    loadComponent: () => import('@pages/document-viewer').then((m) => m.DocumentViewerPage),
   },
   {
     path: '**',
-    redirectTo: 'documents/1',
+    redirectTo: `documents/${DEFAULT_DOCUMENT_ID}`,
   },
 ];

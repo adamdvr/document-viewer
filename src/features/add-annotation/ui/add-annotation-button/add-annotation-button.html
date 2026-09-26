@@ -1,0 +1,10 @@
+@let buttonView = view();
+<button
+  type="button"
+  appButton
+  [variant]="buttonView.variant"
+  [attr.title]="buttonView.hint"
+  (click)="placement.toggle()"
+>
+  {{ buttonView.label }}
+</button>

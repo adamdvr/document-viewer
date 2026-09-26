@@ -1,0 +1,25 @@
+<!--
+  Порядок проверок важен: `value()` бросает исключение в состоянии ошибки, а при
+  повторной загрузке после ошибки статус — `reloading`, и нужен индикатор, а не пустой экран.
+  Смена id сбрасывает значение ресурса, поэтому просмотрщик пересоздаётся с чистым состоянием.
+-->
+@if (documentResource.hasValue()) {
+  <app-document-viewer [documentInfo]="documentResource.value()" />
+} @else if (documentResource.isLoading()) {
+  <app-status-message>
+    <app-spinner />
+    Загрузка документа…
+  </app-status-message>
+} @else if (documentResource.error()) {
+  <app-status-message [tone]="StatusTone.Error">
+    Не удалось загрузить документ.
+    <button
+      type="button"
+      appButton
+      [variant]="ButtonVariant.Primary"
+      (click)="documentResource.reload()"
+    >
+      Повторить
+    </button>
+  </app-status-message>
+}
