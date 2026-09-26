@@ -13,7 +13,6 @@
   font-size: 13px;
 }
 
-// Индикатор фокуса на всю аннотацию: у поля ввода собственная рамка убрана ради вида стикера.
 :host(:focus-within) {
   outline: var(--focus-outline);
   outline-offset: 1px;
