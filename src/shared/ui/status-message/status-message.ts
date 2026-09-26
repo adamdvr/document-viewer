@@ -1,6 +1,14 @@
 import { Component, computed, input } from '@angular/core';
 
-export type StatusTone = 'info' | 'error';
+export enum StatusTone {
+  Info = 'info',
+  Error = 'error',
+}
+
+const ROLE_BY_TONE: Record<StatusTone, string> = {
+  [StatusTone.Info]: 'status',
+  [StatusTone.Error]: 'alert',
+};
 
 /**
  * Состояние экрана (загрузка, ошибка) по центру свободной области. Действия — через контент.
@@ -13,7 +21,7 @@ export type StatusTone = 'info' | 'error';
   host: { '[attr.role]': 'role()' },
 })
 export class StatusMessage {
-  readonly tone = input<StatusTone>('info');
+  readonly tone = input(StatusTone.Info);
 
-  protected readonly role = computed(() => (this.tone() === 'error' ? 'alert' : 'status'));
+  protected readonly role = computed(() => ROLE_BY_TONE[this.tone()]);
 }

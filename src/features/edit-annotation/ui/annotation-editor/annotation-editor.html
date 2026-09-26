@@ -10,7 +10,7 @@
   (dragCancel)="cancelDrag()"
   (keydown)="nudge($event)"
 >
-  <app-icon name="grip" />
+  <app-icon [name]="IconName.Grip" />
 </button>
 
 <textarea
@@ -30,5 +30,5 @@
   aria-label="Удалить аннотацию"
   (click)="remove()"
 >
-  <app-icon name="close" />
+  <app-icon [name]="IconName.Close" />
 </button>

@@ -3,7 +3,7 @@ import { rxResource } from '@angular/core/rxjs-interop';
 
 import { DocumentViewer } from '@widgets/document-viewer';
 import { DocumentApi } from '@entities/document';
-import { Button, Spinner, StatusMessage } from '@shared/ui';
+import { Button, ButtonVariant, Spinner, StatusMessage, StatusTone } from '@shared/ui';
 
 /** Маршрут `documents/:id`: загружает документ и показывает загрузку, ошибку или просмотрщик. */
 @Component({
@@ -17,6 +17,9 @@ export class DocumentViewerPage {
   readonly id = input.required<string>();
 
   private readonly documentApi = inject(DocumentApi);
+
+  protected readonly ButtonVariant = ButtonVariant;
+  protected readonly StatusTone = StatusTone;
 
   protected readonly documentResource = rxResource({
     params: () => this.id(),

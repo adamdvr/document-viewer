@@ -11,9 +11,14 @@
     Загрузка документа…
   </app-status-message>
 } @else if (documentResource.error()) {
-  <app-status-message tone="error">
+  <app-status-message [tone]="StatusTone.Error">
     Не удалось загрузить документ.
-    <button type="button" appButton variant="primary" (click)="documentResource.reload()">
+    <button
+      type="button"
+      appButton
+      [variant]="ButtonVariant.Primary"
+      (click)="documentResource.reload()"
+    >
       Повторить
     </button>
   </app-status-message>

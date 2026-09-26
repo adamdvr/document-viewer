@@ -5,16 +5,21 @@ interface IconDefinition {
   readonly strokeWidth: number;
 }
 
+export enum IconName {
+  Plus = 'plus',
+  Minus = 'minus',
+  Close = 'close',
+  Grip = 'grip',
+}
+
 // Иконки рисуются штрихом в сетке 16×16. Точки ручки — отрезки нулевой длины
 // с круглыми концами: одна техника отрисовки для всего набора.
-const ICONS = {
-  plus: { path: 'M8 3.5v9M3.5 8h9', strokeWidth: 1.75 },
-  minus: { path: 'M3.5 8h9', strokeWidth: 1.75 },
-  close: { path: 'M4.5 4.5l7 7M11.5 4.5l-7 7', strokeWidth: 1.75 },
-  grip: { path: 'M6 4h0M10 4h0M6 8h0M10 8h0M6 12h0M10 12h0', strokeWidth: 3 },
-} as const satisfies Record<string, IconDefinition>;
-
-export type IconName = keyof typeof ICONS;
+const ICONS: Record<IconName, IconDefinition> = {
+  [IconName.Plus]: { path: 'M8 3.5v9M3.5 8h9', strokeWidth: 1.75 },
+  [IconName.Minus]: { path: 'M3.5 8h9', strokeWidth: 1.75 },
+  [IconName.Close]: { path: 'M4.5 4.5l7 7M11.5 4.5l-7 7', strokeWidth: 1.75 },
+  [IconName.Grip]: { path: 'M6 4h0M10 4h0M6 8h0M10 8h0M6 12h0M10 12h0', strokeWidth: 3 },
+};
 
 /** Декоративная иконка размером 1em. Доступное имя задаёт элемент, в котором она лежит. */
 @Component({

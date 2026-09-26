@@ -1,7 +1,7 @@
 <button
   type="button"
   appIconButton
-  icon="minus"
+  [icon]="IconName.Minus"
   label="Уменьшить масштаб"
   [disabled]="!zoom.canZoomOut()"
   (click)="zoom.zoomOut()"
@@ -20,7 +20,7 @@
 <button
   type="button"
   appIconButton
-  icon="plus"
+  [icon]="IconName.Plus"
   label="Увеличить масштаб"
   [disabled]="!zoom.canZoomIn()"
   (click)="zoom.zoomIn()"

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 
-import { IconButton } from '@shared/ui';
+import { IconButton, IconName } from '@shared/ui';
 
 import { ZoomStore } from '../../model/zoom-store';
 
@@ -13,4 +13,5 @@ import { ZoomStore } from '../../model/zoom-store';
 })
 export class ZoomControls {
   protected readonly zoom = inject(ZoomStore);
+  protected readonly IconName = IconName;
 }

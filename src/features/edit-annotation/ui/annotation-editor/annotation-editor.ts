@@ -12,7 +12,7 @@ import {
 import { Annotation, AnnotationsStore } from '@entities/annotation';
 import { PageSurface } from '@entities/document';
 import { ClientPoint, Point, PointerDrag, Size, clampPoint } from '@shared/lib';
-import { Icon } from '@shared/ui';
+import { Icon, IconName } from '@shared/ui';
 
 interface DragSession {
   /** Смещение точки захвата от левого верхнего угла аннотации. */
@@ -57,6 +57,8 @@ export class AnnotationEditor {
   private readonly dragSession = signal<DragSession | null>(null);
   /** Позиция во время перетаскивания. В стор попадает один раз — при отпускании. */
   private readonly dragPosition = signal<Point | null>(null);
+
+  protected readonly IconName = IconName;
 
   protected readonly dragging = computed(() => this.dragSession() !== null);
   protected readonly position = computed<Point>(() => this.dragPosition() ?? this.annotation());

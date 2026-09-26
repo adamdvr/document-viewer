@@ -4,6 +4,8 @@ import { Point } from '@shared/lib';
 
 import { Annotation } from './annotation';
 
+const NO_ANNOTATIONS: readonly Annotation[] = [];
+
 /**
  * Аннотации открытого документа. Не синглтон: предоставляется компонентом, который
  * отвечает за документ, и живёт ровно столько же, сколько он.
@@ -16,7 +18,12 @@ export class AnnotationsStore {
   private readonly items = signal<readonly Annotation[]>([]);
 
   readonly all = this.items.asReadonly();
-  readonly byPage = computed(() => groupByPage(this.items()));
+  private readonly byPage = computed(() => groupByPage(this.items()));
+
+  /** Аннотации страницы; реактивно, если вызывать в шаблоне или computed. */
+  forPage(pageNumber: number): readonly Annotation[] {
+    return this.byPage().get(pageNumber) ?? NO_ANNOTATIONS;
+  }
 
   add(pageNumber: number, { x, y }: Point): void {
     const annotation: Annotation = { id: crypto.randomUUID(), pageNumber, x, y, text: '' };

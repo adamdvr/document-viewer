@@ -1,7 +1,13 @@
 import { Component, input } from '@angular/core';
 
-/** `primary` — главное действие, `outline` — второстепенное, `tonal` — выбранное / активный режим. */
-export type ButtonVariant = 'primary' | 'outline' | 'tonal';
+export enum ButtonVariant {
+  /** Главное действие. */
+  Primary = 'primary',
+  /** Второстепенное действие. */
+  Outline = 'outline',
+  /** Выбранное состояние / активный режим. */
+  Tonal = 'tonal',
+}
 
 /**
  * Текстовая кнопка. Висит на нативном `<button>`, поэтому семантика, фокус, `type` и
@@ -14,5 +20,5 @@ export type ButtonVariant = 'primary' | 'outline' | 'tonal';
   host: { '[attr.data-variant]': 'variant()' },
 })
 export class Button {
-  readonly variant = input<ButtonVariant>('outline');
+  readonly variant = input(ButtonVariant.Outline);
 }

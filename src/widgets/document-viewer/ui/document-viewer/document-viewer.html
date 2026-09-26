@@ -13,7 +13,7 @@
 <main class="viewport">
   @for (page of documentInfo().pages; track page.number; let first = $first) {
     <app-page-view [page]="page" [scale]="zoom.scale()" [priority]="first">
-      @for (annotation of annotations.byPage().get(page.number) ?? []; track annotation.id) {
+      @for (annotation of annotations.forPage(page.number); track annotation.id) {
         <app-annotation-editor [annotation]="annotation" />
       }
       @if (placement.active()) {
